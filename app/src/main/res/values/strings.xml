@@ -20,5 +20,5 @@
     <string name="team_country">Team country :</string>
     <string name="team_description">Team description</string>
     <string name="error_btn_txt">OK</string>
-    <string name="search_fav_team_text">Search for your favorite soccer team</string>
+    <string name="search_fav_team_text">Search for your favorite sports team</string>
 </resources>
