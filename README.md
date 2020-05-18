@@ -26,5 +26,5 @@ Fragments and view models specific to the Favorite team search flow
 
 ## NavigationComponents
 
-For navigating between fragments
+Navigation graph for navigating between fragments
 
