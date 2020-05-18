@@ -1,5 +1,9 @@
 # Favorite-Team-Search
 
+## Architecture
+MVVM
+Single Activity App
+
 ## Model
 
 This package contains data objects related to Favorite team search.
@@ -22,5 +26,5 @@ Fragments and view models specific to the Favorite team search flow
 
 ## NavigationComponents
 
-For navigating between fragments 
+For navigating between fragments
 
