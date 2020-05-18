@@ -65,6 +65,25 @@ class FavoriteSearchHomeScreenFragment : BaseFragment() {
         })
     }
 
+
+    private fun configureUI(view: View) {
+        view.apply {
+            startGradientAnimation(this)
+            startCloudAnimation(this)
+
+            findViewById<AppCompatTextView>(R.id.Header_text)?.text = context.getString(R.string.search_fav_team_text)
+
+            findViewById<TextInputEditText>(R.id.Edit_text)?.afterTextChanged {
+                viewModel.clearPnrError()
+                viewModel.teamName.value = it.trim()
+            }
+            findViewById<AppCompatButton>(R.id.search_btn)?.setOnClickListener {
+                setFocusabilityOnError(this)
+                viewModel.onContinueClick()
+            }
+        }
+    }
+
     /**
      * this function will be displayed error when UI validation is fail
      * @param textInput id of the textInputLayout
@@ -82,25 +101,6 @@ class FavoriteSearchHomeScreenFragment : BaseFragment() {
             } else {
                 isErrorEnabled = false
             }
-        }
-    }
-
-    private fun configureUI(view: View) {
-        view.apply {
-            startGradientAnimation(this)
-            startCloudAndPlaneAnimation(this)
-
-            findViewById<AppCompatTextView>(R.id.Header_text)?.text = context.getString(R.string.search_fav_team_text)
-
-            findViewById<TextInputEditText>(R.id.Edit_text)?.afterTextChanged {
-                viewModel.clearPnrError()
-                viewModel.teamName.value = it.trim()
-            }
-            findViewById<AppCompatButton>(R.id.search_btn)?.setOnClickListener {
-                setFocusabilityOnError(this)
-                viewModel.onContinueClick()
-            }
-
         }
     }
 
@@ -130,7 +130,7 @@ class FavoriteSearchHomeScreenFragment : BaseFragment() {
         }
     }
 
-    private fun startCloudAndPlaneAnimation(view: View) {
+    private fun startCloudAnimation(view: View) {
         val cloudAnim =
             AnimatorInflater.loadAnimator(
                 this.context,
