@@ -1,0 +1,46 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="OutlinedBox" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="hintTextColor">@color/atlantic_amethyst</item>
+        <item name="boxStrokeColor">@color/component_text_fields</item>
+        <item name="errorTextColor">@color/alert_red</item>
+        <item name="android:minHeight">@dimen/dimen_48dp</item>
+    </style>
+
+    <style name="text_appearance" parent="TextAppearance.Design.Hint">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+
+    <style name="spinner_translucent">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="spinner_translucent.dim">
+        <item name="android:windowBackground">@color/transparent_dim</item>
+    </style>
+
+    <style name="section_header">
+        <item name="android:textSize">@dimen/dimen_22sp</item>
+        <item name="android:lineSpacingExtra">@dimen/dimen_10dp</item>
+    </style>
+
+
+    <style name="section_header.Black">
+        <item name="android:textColor">@color/neutral_black</item>
+    </style>
+
+
+    <dimen name="dimen_22sp">22sp</dimen>
+    <dimen name="dimen_10dp">10dp</dimen>
+</resources>

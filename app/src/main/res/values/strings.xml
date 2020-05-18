@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">Favorite Team Search</string>
+    <string name="search_result">Favorite team search result</string>
+    <string name="search_your_favorite_team">Search your favorite team</string>
+    <string name="enter_team_name">Enter team name</string>
+    <string name="search">Search</string>
+    <string name="generic_service_error_message">Data Services are not available</string>
+    <string name="generic_connectivity_error_message">No internet connection</string>
+    <string name="spinner_wait_text">Please wait</string>
+    <string name="spinner_cancel_content_description_general">Cancel the Ongoing service call</string>
+    <string name="empty_field_error">Please enter team name</string>
+    <string name="special_char_field_error">Please enter valid team name</string>
+    <string name="error_title">Favorite Team Search</string>
+    <string name="stadium">team stadium</string>
+    <string name="stadium_name">Stadium name :</string>
+    <string name="stadium_capacity">Stadium capacity :</string>
+    <string name="team_name">Team name :</string>
+    <string name="team_formed_year">Team formed year :</string>
+    <string name="team_league">Team league :</string>
+    <string name="team_country">Team country :</string>
+    <string name="team_description">Team description</string>
+    <string name="error_btn_txt">OK</string>
+    <string name="search_fav_team_text">Search for your favorite soccer team</string>
+</resources>
