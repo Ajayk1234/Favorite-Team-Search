@@ -12,7 +12,7 @@ android {
     compileSdkVersion 30
     defaultConfig {
         applicationId "com.example.itemsearch"
-        minSdkVersion 24
+        minSdkVersion 26
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -78,5 +78,12 @@ dependencies {
     //Picasso
     def picassoVersion = "2.71828"
     implementation "com.squareup.picasso:picasso:$picassoVersion"
+
+    // Required -- JUnit 4 framework
+    // Optional -- Robolectric environment
+    // Optional -- Mockito framework
+    testImplementation 'org.mockito:mockito-core:3.6.28'
+    testImplementation 'junit:junit:4.13.1'
+    testImplementation "org.mockito:mockito-core:3.6.28"
 
 }

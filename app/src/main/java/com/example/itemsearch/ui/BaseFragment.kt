@@ -1,5 +1,8 @@
 package com.example.itemsearch.ui
 
+import android.content.Context
+import android.view.inputmethod.InputMethodManager
+import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -109,6 +112,18 @@ abstract class BaseFragment : Fragment() {
         }
     }
 
+    fun showMessageDialogImpl(
+        @StringRes errorMsg: Int?,
+        actionBlock: () -> Unit = {}
+    ) {
+        errorMsg?.let {
+            showMessageDialog(
+                getString(it),
+                actionBlock = { actionBlock() }
+            )
+        }
+    }
+
     private fun showMessageDialog(
         message: String?,
         actionBlock: () -> Unit = {}
@@ -140,6 +155,11 @@ abstract class BaseFragment : Fragment() {
         (requireActivity() as? AppCompatActivity)?.supportActionBar?.run {
             show()
         }
+    }
+
+    fun hideKeyboard() {
+        val imm = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(view?.windowToken, 0)
     }
 
 }

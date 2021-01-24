@@ -10,7 +10,7 @@ import com.example.itemsearch.R
 import com.example.itemsearch.models.Item
 import com.squareup.picasso.Picasso
 
-class ImageListAdapter(val item: List<Item>, private val cellClickListener: CellClickListener) :
+class ImageListAdapter(val item: List<Item>, private val imageClickListener: ImagelClickListener) :
     RecyclerView.Adapter<ImageListAdapter.ViewHolder>() {
 
 
@@ -24,7 +24,7 @@ class ImageListAdapter(val item: List<Item>, private val cellClickListener: Cell
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bindItems(item[position])
         holder.itemView.setOnClickListener {
-            cellClickListener.onCellClickListener(position)
+            imageClickListener.onImageClickListener(position)
         }
     }
 
@@ -49,6 +49,6 @@ class ImageListAdapter(val item: List<Item>, private val cellClickListener: Cell
     }
 }
 
-interface CellClickListener {
-    fun onCellClickListener(position: Int)
+interface ImagelClickListener {
+    fun onImageClickListener(position: Int)
 }

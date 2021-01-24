@@ -1,6 +1,7 @@
 package com.example.itemsearch.ui
 
 import androidx.annotation.StringRes
+import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -11,10 +12,9 @@ import com.example.itemsearch.repository.ItemSearchRepository
 import kotlinx.coroutines.launch
 import java.util.regex.Pattern
 
-class ItemSearchHomeScreenViewModel(public val favSearchRepository: ItemSearchRepository) :
+class ItemSearchHomeScreenViewModel(private val itemSearchRepository: ItemSearchRepository) :
     NavigationViewModel() {
 
-    var teamName = MutableLiveData<String>()
     val searchLiveData = MutableLiveData<SearchResponse>()
     private var _showProgress = MutableLiveData<Boolean>()
     var showProgress: LiveData<Boolean> = _showProgress
@@ -27,7 +27,7 @@ class ItemSearchHomeScreenViewModel(public val favSearchRepository: ItemSearchRe
      * Set live data property to display message
      * @param message - could be a string or StringWrapper
      */
-    fun setMessageForDialog(message: ServiceException?) {
+    private fun setMessageForDialog(message: ServiceException?) {
         _dialog.value = message
     }
 
@@ -38,13 +38,21 @@ class ItemSearchHomeScreenViewModel(public val favSearchRepository: ItemSearchRe
         _dialog.value = null
     }
 
+    /**
+     * Resets the error to null. It wont be shown by default on the page resume
+     */
+    fun clearErrorMsg() = run {
+        _errorMsg.value = null
+    }
 
-    fun onContinueClick() {
-        if (validateUI()) {
+    fun onContinueClick(userInput: String) {
+        if (!validateUI(userInput)) {
             setProgress(true)
             viewModelScope.launch {
-                handleApiResult(favSearchRepository.activateTeamSearch(teamName.value.orEmpty()))
+                handleApiResult(itemSearchRepository.activateTeamSearch(userInput))
             }
+        } else {
+            _errorMsg.value = R.string.special_char_field_error
         }
     }
 
@@ -69,22 +77,9 @@ class ItemSearchHomeScreenViewModel(public val favSearchRepository: ItemSearchRe
 
     }
 
-    private fun validateUI(): Boolean {
+    fun validateUI(userInput: String) = userInput.isSpecialCharExist()
 
-        if (teamName.value.isNullOrEmpty()) {
-
-            _errorMsg.value = R.string.empty_field_error
-            return false
-        }
-        if (teamName.value.toString().isSpecialCharExist()) {
-            _errorMsg.value = R.string.special_char_field_error
-
-            return false
-        }
-        return true
-    }
-
-    fun String.isSpecialCharExist(): Boolean {
+    private fun String.isSpecialCharExist(): Boolean {
         val pattern = Pattern.compile("[a-zA-Z0-9 ]*")
         val matcher = pattern.matcher(this)
         if (!matcher.matches()) {
@@ -97,14 +92,7 @@ class ItemSearchHomeScreenViewModel(public val favSearchRepository: ItemSearchRe
      * Set live data property to show/hide status flag
      * @param status - boolean to enable/disable
      */
-    fun setProgress(status: Boolean) {
+    private fun setProgress(status: Boolean) {
         _showProgress.value = status
-    }
-
-    /**
-     * The below function invoke when tap and typing characters in PNR edit text
-     */
-    fun clearPnrError() = run {
-        _errorMsg.value = null
     }
 }

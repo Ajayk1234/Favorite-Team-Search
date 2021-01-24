@@ -1,5 +1,5 @@
 package com.example.itemsearch.ui
 
-interface onClickInterface {
+interface OnClickInterface {
     fun onClick(position: Int)
 }
