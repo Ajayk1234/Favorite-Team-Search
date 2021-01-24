@@ -42,7 +42,7 @@ class ImageListAdapter(val item: List<Item>, private val imageClickListener: Ima
             textViewName.text = user.title
             val picasso = Picasso.get()
             picasso?.apply {
-                load(user.media.mediaLink).placeholder(R.drawable.ic_launcher_foreground)
+                load(user.media?.mediaLink).placeholder(R.drawable.ic_launcher_foreground)
                     .error(R.drawable.ic_launcher_foreground).into(imageView)
             }
         }

@@ -1,12 +1,13 @@
 package com.example.itemsearch.ui
 
 import androidx.annotation.StringRes
-import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.itemsearch.R
-import com.example.itemsearch.models.*
+import com.example.itemsearch.models.SearchResponse
+import com.example.itemsearch.models.ServiceException
+import com.example.itemsearch.models.ServiceResult
 import com.example.itemsearch.navigationcomponents.NavigationViewModel
 import com.example.itemsearch.repository.ItemSearchRepository
 import kotlinx.coroutines.launch
@@ -49,27 +50,27 @@ class ItemSearchHomeScreenViewModel(private val itemSearchRepository: ItemSearch
         if (!validateUI(userInput)) {
             setProgress(true)
             viewModelScope.launch {
-                handleApiResult(itemSearchRepository.activateTeamSearch(userInput))
+                handleApiResult(userInput)
             }
         } else {
             _errorMsg.value = R.string.special_char_field_error
         }
     }
 
-    private fun handleApiResult(activateTeamSearch: ServiceResult<SearchResponse>) {
+    suspend fun handleApiResult(userInput: String) {
 
-        when (activateTeamSearch) {
+        when (val response = itemSearchRepository.activateTeamSearch(userInput)) {
             is ServiceResult.Error -> {
                 setProgress(false)
                 setMessageForDialog(
                     ServiceException(
-                        activateTeamSearch.exception.code.orEmpty(),
-                        activateTeamSearch.exception.string
+                        response.exception.code.orEmpty(),
+                        response.exception.string
                     )
                 )
             }
             is ServiceResult.Success -> {
-                val data = activateTeamSearch.data
+                val data = response.data
                 setProgress(false)
                 searchLiveData.value = data
             }

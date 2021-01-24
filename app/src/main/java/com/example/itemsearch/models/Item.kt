@@ -7,20 +7,20 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class Item(
     @SerializedName("title")
-    val title: String,
+    val title: String?,
     @SerializedName("link")
-    val link: String,
-    val media: Media,
+    val link: String?,
+    val media: Media?,
     @SerializedName("date_taken")
-    val dateTaken: String,
+    val dateTaken: String?,
     @SerializedName("description")
-    val description: String,
+    val description: String?,
     @SerializedName("published")
-    val published: String,
+    val published: String?,
     @SerializedName("author")
-    val author: String,
+    val author: String?,
     @SerializedName("author_id")
-    val authorId: String,
+    val authorId: String?,
     @SerializedName("tags")
-    val tags: String
+    val tags: String?
 ): Parcelable

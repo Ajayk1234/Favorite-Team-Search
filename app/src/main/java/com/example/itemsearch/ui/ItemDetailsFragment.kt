@@ -59,7 +59,7 @@ class ItemDetailsFragment : BaseFragment() {
 
     private fun configureUI() {
         val item = data[itemPosition]
-        val url = URL(item.media.mediaLink)
+        val url = URL(item.media?.mediaLink)
         val bottomUp: Animation = AnimationUtils.loadAnimation(
             context,
             R.anim.anim_bottom_up
@@ -77,7 +77,7 @@ class ItemDetailsFragment : BaseFragment() {
             binding.titleName.text = item.title
                 val picasso = Picasso.get()
                 picasso?.apply {
-                    load(item.media.mediaLink).placeholder(R.drawable.ic_launcher_foreground)
+                    load(item.media?.mediaLink).placeholder(R.drawable.ic_launcher_foreground)
                         .error(R.drawable.ic_error).into(binding.image)
                 }
         binding.descriptionText.text = Html.fromHtml(item.description)

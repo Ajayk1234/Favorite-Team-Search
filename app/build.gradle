@@ -82,8 +82,9 @@ dependencies {
     // Required -- JUnit 4 framework
     // Optional -- Robolectric environment
     // Optional -- Mockito framework
-    testImplementation 'org.mockito:mockito-core:3.6.28'
     testImplementation 'junit:junit:4.13.1'
     testImplementation "org.mockito:mockito-core:3.6.28"
+    testImplementation 'androidx.arch.core:core-testing:2.1.0'
+    testImplementation 'org.json:json:20180813'
 
 }
