@@ -9,7 +9,7 @@ import android.view.*
 import android.view.View.GONE
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import android.widget.*
+import android.widget.SearchView
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.itemsearch.R
 import com.example.itemsearch.databinding.MainSearchFragmentBinding
@@ -51,15 +51,11 @@ class ItemSearchHomeScreenFragment : BaseFragment(), ImagelClickListener,
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        configureViewModel()
-        configureUI(view)
-    }
-
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         setHasOptionsMenu(true)
+        configureViewModel()
+        configureUI()
     }
 
     private fun configureViewModel() {
@@ -75,14 +71,12 @@ class ItemSearchHomeScreenFragment : BaseFragment(), ImagelClickListener,
         })
     }
 
-    private fun configureUI(view: View) {
-        view.apply {
+    private fun configureUI() {
             val fadeInAnimation: Animation =
-                AnimationUtils.loadAnimation(view.context, R.anim.anim_fade_in)
+                AnimationUtils.loadAnimation(context, R.anim.anim_fade_in)
             binding.HeaderText.startAnimation(fadeInAnimation)
-            binding.HeaderText.text = context.getString(R.string.search_item_text)
+            binding.HeaderText.text = context?.getString(R.string.search_item_text)
             bindRecyclerView("")
-        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
