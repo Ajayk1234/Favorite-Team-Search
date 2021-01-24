@@ -72,11 +72,11 @@ class ItemSearchHomeScreenFragment : BaseFragment(), ImagelClickListener,
     }
 
     private fun configureUI() {
-            val fadeInAnimation: Animation =
-                AnimationUtils.loadAnimation(context, R.anim.anim_fade_in)
-            binding.HeaderText.startAnimation(fadeInAnimation)
-            binding.HeaderText.text = context?.getString(R.string.search_item_text)
-            bindRecyclerView("")
+        val fadeInAnimation: Animation =
+            AnimationUtils.loadAnimation(context, R.anim.anim_fade_in)
+        binding.HeaderText.startAnimation(fadeInAnimation)
+        binding.HeaderText.text = context?.getString(R.string.search_item_text)
+        bindRecyclerView("")
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
